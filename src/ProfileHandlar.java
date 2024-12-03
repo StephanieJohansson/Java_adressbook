@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class PersonManager {
+public class ProfileHandlar {
     Scanner scanner = new Scanner(System.in);
         private final ArrayList<Person> personList;
 
-        public PersonManager() {
+        public ProfileHandlar() {
             personList = new ArrayList<>();
         }
 
