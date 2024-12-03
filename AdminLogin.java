@@ -7,7 +7,7 @@ public class AdminLogin {
     private static final String ADMIN_PASSWORD = "admin";
 
 
-    public void login() {
+    public boolean login() {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Login as administrator");
@@ -46,16 +46,17 @@ public class AdminLogin {
                         break;
                     case 4:
                         System.out.println("Signing out...");
-                        return; // exit the admin menu
+                        return true; // exit the admin menu and return to main class
                     default:
                         System.out.println("Invalid choice, try again.");
                 }
             }
         } else {
             System.out.println("Invalid username or password.");
+            return false;
         }
 
-        scanner.close();
+        // scanner.close();
 
     }
 }

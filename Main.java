@@ -62,8 +62,11 @@ public class Main {
                 }
             } else if (choice == 2) { // If user chooses 2 to log in as admin
                 AdminLogin adminLogin = new AdminLogin(); // Create an instance of AdminLogin
-                adminLogin.login(); // Call the login method
-                break;
+                boolean loggedOut = adminLogin.login(); // Call the login method
+
+                if (loggedOut) {
+                    System.out.println("Du har loggats ut och återanvänder till huvudmenyn.");
+                }
 
             } else if (choice == 3) { //If user chooses 3 for exiting
                 System.out.println("Avslutar...");
