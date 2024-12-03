@@ -35,11 +35,13 @@ public class Main {
         }
 
         System.out.println("Välkommen till Telefonboken!");
+        System.out.println("Du är inloggad som gäst.");
         while (true) { //Infinity loop for the menu
             //Menu display options
             System.out.println("\nVälj ett alternativ:");
             System.out.println("1. Sök");
-            System.out.println("2. Avsluta");
+            System.out.println("2. Logga in som admin");
+            System.out.println("3. Avsluta");
             System.out.print("Ditt val: ");
             int choice = scanner.nextInt(); //Read users choice between 1-2
             scanner.nextLine(); // Clear the input
@@ -58,7 +60,12 @@ public class Main {
                         System.out.println("--------------------");
                     }
                 }
-            } else if (choice == 2) { //If user chooses 2 for exiting
+            } else if (choice == 2) { // If user chooses 2 to log in as admin
+                AdminLogin adminLogin = new AdminLogin(); // Create an instance of AdminLogin
+                adminLogin.login(); // Call the login method
+                break;
+
+            } else if (choice == 3) { //If user chooses 3 for exiting
                 System.out.println("Avslutar...");
                 break; //Exit loop
             } else { //Handle invalid input
