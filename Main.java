@@ -1,6 +1,11 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
         PersonManager personManager = new PersonManager();
 
 
@@ -28,5 +33,39 @@ public class Main {
         for (Persons person : personManager.getPersons()) {
             System.out.print(person);
         }
+
+        System.out.println("Välkommen till Telefonboken!");
+        while (true) { //Infinity loop for the menu
+            //Menu display options
+            System.out.println("\nVälj ett alternativ:");
+            System.out.println("1. Sök");
+            System.out.println("2. Avsluta");
+            System.out.print("Ditt val: ");
+            int choice = scanner.nextInt(); //Read users choice between 1-2
+            scanner.nextLine(); // Clear the input
+
+            if (choice == 1) { //If user chooses 1 for search
+                System.out.print("Vem vill du hitta?: ");
+                String query = scanner.nextLine(); //Read search input
+                ArrayList<Persons> results = personManager.search(query); //Perform search
+
+                if (results.isEmpty()) { //If no match is found
+                    System.out.println("Inga resultat hittades.");
+                } else { //Else display matching persons
+                    System.out.println("Hittade kontakter:");
+                    for (Persons person : results) {
+                        System.out.println(person); //Print contact details
+                        System.out.println("--------------------");
+                    }
+                }
+            } else if (choice == 2) { //If user chooses 2 for exiting
+                System.out.println("Avslutar...");
+                break; //Exit loop
+            } else { //Handle invalid input
+                System.out.println("Ogiltigt val. Försök igen.");
+            }
+        }
+
+        scanner.close(); //Close scanner to release resources
     }
 }
