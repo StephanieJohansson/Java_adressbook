@@ -5,6 +5,13 @@ public class AdminLogin {
     // Constants for admin credentials
     private static final String ADMIN_USERNAME = "admin";
     private static final String ADMIN_PASSWORD = "admin";
+    // Instance of ProfileHandlar
+    private final ProfileHandlar profileHandlar;
+
+    // Constructor
+    public AdminLogin() {
+        this.profileHandlar = new ProfileHandlar();
+    }
 
 
     public boolean login() {
@@ -34,15 +41,15 @@ public class AdminLogin {
                 switch (adminChoice) {
                     case 1:
                         System.out.println("Add a new profile");
-                        // ........ code to add a new profile
+
                         break;
                     case 2:
                         System.out.println("Delete a profile");
-                        // ........ code to delete a profile
+
                         break;
                     case 3:
                         System.out.println("Update a profile");
-                        // ........ code to update a profile
+
                         break;
                     case 4:
                         System.out.println("Signing out...");
