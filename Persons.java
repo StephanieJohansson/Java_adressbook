@@ -36,6 +36,12 @@ public class Persons {
     public String getPhone() {
         return phone;
     }
+    public void setAddress(String address){
+        this.address = address;
+    }
+    public void setPhone(String phone){
+        this.phone = phone;
+    }
 
     // override to get a more readable representation
    @Override
