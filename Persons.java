@@ -9,17 +9,13 @@ public class Persons {
     private String phone;
 
     // constructor to create a person with all the specified properties
-    public Persons(String firstName, String lastName, int age, String address, int i, String phone) {
+    public Persons(String firstName, String lastName, int age, String address, int i,String phone) {
         // assigning values to the instance variable with 'this'
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.address = address;
         this.phone = phone;
-    }
-
-    // second constructor to use for the personList in ProfileHandlar.java
-    public Persons(String firstName, String lastName, int age, String address, String phone) {
     }
 
     // getter-methods to get the values of the instance variables to get access to the object data

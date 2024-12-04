@@ -24,44 +24,12 @@ public class ProfileHandlar {
         System.out.print("Enter phone number: ");
         String phone = scanner.nextLine(); // Read phone number
 
+        // defines i to 0 just to have the right amount argument in the constructor
+        int i=0;
         // Now use personManager to add the profile
-        personManager.addPerson(new Persons(firstName, lastName, age, address, phone));
+        personManager.addPerson(new Persons(firstName, lastName, age, address, i, phone));
         System.out.println("Profile added successfully.");
-    /*
-        //Scanner instance for user input
-        Scanner scanner = new Scanner(System.in);
 
-        //List to store profiles
-        private final ArrayList<Persons> personList;
-
-        //Constructor to initialize the profile list
-        public ProfileHandlar() {
-            personList = new ArrayList<>();
-
-        }
-
-        //Method for adding person to the list
-        public void addPerson(Persons person){
-
-            personList.add(person);
-        }
-
-        //Create and add a new profile
-        public void addProfile(Scanner scanner){
-            System.out.println("Enter firstname: ");
-            String firstName = scanner.nextLine(); //Read first name
-            System.out.print("Enter lastname:");
-            String lastName = scanner.nextLine(); //Read last name
-            System.out.print("Enter age: ");
-            int age = scanner.nextInt(); //Read age
-            scanner.nextLine(); // Consume newline
-            System.out.print("Enter address: ");
-            String address = scanner.nextLine(); //Read address
-            System.out.print("Enter phone number: ");
-            String phone = scanner.nextLine(); //Read phone number
-
-            personList.add(new Persons(firstName, lastName, age, address, phone));
-            System.out.println("Profile added successfully.");*/
         }
 
         //Remove profile base on first and last name
