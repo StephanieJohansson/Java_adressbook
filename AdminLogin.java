@@ -13,7 +13,7 @@ public class AdminLogin {
         this.profileHandlar = new ProfileHandlar(personManager);
     }
 
-
+    // Admin login process
     public boolean login() {
 
         Scanner scanner = new Scanner(System.in);
@@ -26,18 +26,19 @@ public class AdminLogin {
         // Check if input matches admin credentials
         if (username.equals(ADMIN_USERNAME) && password.equals(ADMIN_PASSWORD)) {
             System.out.println("Login successful");
-
+            System.out.println("You're signed in as admin.");
 
             // Admin menu loop
             int adminChoice;
             do {
-                System.out.println("Welcome " + ADMIN_USERNAME);
+                System.out.println("What do you want to do?");
                 System.out.println("1. Add a new profile");
                 System.out.println("2. Delete a profile");
                 System.out.println("3. Update a profile");
                 System.out.println("4. Sign out");
+                System.out.println("Please enter your choice: ");
 
-                // Check if user input is valid
+                // Check if user input is an integer
                 while (!scanner.hasNextInt()) {
                     System.out.println("Invalid input. Try again");
                     scanner.next();
@@ -64,9 +65,9 @@ public class AdminLogin {
                     default:
                         System.out.println("Invalid choice, try again.");
                 }
-            } while (adminChoice < 1 || adminChoice > 4); // Repeat until valid choice
+            } while (adminChoice < 1 || adminChoice > 4); // Repeat until valid choice 1-4
         } else {
-            System.out.println("Invalid username or password.");
+            System.out.println("Invalid username or password. Returning to main menu...");
             return false; // Return to main menu if credentials are incorrect
         }
         return false;

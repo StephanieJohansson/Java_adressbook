@@ -38,10 +38,10 @@ public class Main {
         }
 
         System.out.println("Welcome to the phonebook!");
-        System.out.println("You're signed in as a guest.");
         while (true) { //Infinity loop for the menu
             //Menu display options
             System.out.println("\nChoose an option:");
+            System.out.println("You're signed in as guest.");
             System.out.println("1. Search");
             System.out.println("2. Show list");
             System.out.println("3. Log in as admin");
