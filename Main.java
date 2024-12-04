@@ -31,48 +31,59 @@ public class Main {
         personManager.addPerson(new Persons("Erik", "Persson", 39, "Långgatan", 8, "070-012 34 56"));
 
         for (Persons person : personManager.getPersons()) {
-            System.out.print(person);
+
         }
 
-        System.out.println("Välkommen till Telefonboken!");
-        System.out.println("Du är inloggad som gäst.");
+        System.out.println("Welcome to the phonebook!");
+        System.out.println("You're signed in as a guest.");
         while (true) { //Infinity loop for the menu
             //Menu display options
-            System.out.println("\nVälj ett alternativ:");
-            System.out.println("1. Sök");
-            System.out.println("2. Logga in som admin");
-            System.out.println("3. Avsluta");
-            System.out.print("Ditt val: ");
+            System.out.println("\nChoose an option:");
+            System.out.println("1. Search");
+            System.out.println("2. Show list");
+            System.out.println("3. Log in as admin");
+            System.out.println("4. Exit");
+            System.out.print("Your choice: ");
             int choice = scanner.nextInt(); //Read users choice between 1-2
             scanner.nextLine(); // Clear the input
 
             if (choice == 1) { //If user chooses 1 for search
-                System.out.print("Vem vill du hitta?: ");
+                System.out.print("Who do you wanna find?: ");
                 String query = scanner.nextLine(); //Read search input
                 ArrayList<Persons> results = personManager.search(query); //Perform search
 
                 if (results.isEmpty()) { //If no match is found
-                    System.out.println("Inga resultat hittades.");
+                    System.out.println("No results found.");
                 } else { //Else display matching persons
-                    System.out.println("Hittade kontakter:");
+                    System.out.println("Found profiles:");
                     for (Persons person : results) {
                         System.out.println(person); //Print contact details
                         System.out.println("--------------------");
                     }
                 }
-            } else if (choice == 2) { // If user chooses 2 to log in as admin
+            } else if (choice == 2) { // new code to show the list
+                ArrayList<Persons> persons = personManager.getPersons();
+                if (persons.isEmpty()) {
+                    System.out.println("There is no profiles in this list.");
+                } else {
+                    System.out.println("List of profiles:");
+                    for (Persons person : persons) {
+                        System.out.println(person);
+                    }
+                }
+            } else if (choice == 3) { // If user chooses 3 to log in as admin
                 AdminLogin adminLogin = new AdminLogin(); // Create an instance of AdminLogin
                 boolean loggedOut = adminLogin.login(); // Call the login method
 
                 if (loggedOut) {
-                    System.out.println("Du har loggats ut och återanvänder till huvudmenyn.");
+                    System.out.println("You have been logged out and are returning to the main menu.");
                 }
 
-            } else if (choice == 3) { //If user chooses 3 for exiting
-                System.out.println("Avslutar...");
+            } else if (choice == 4) { //If user chooses 4 for exiting
+                System.out.println("Exits...");
                 break; //Exit loop
             } else { //Handle invalid input
-                System.out.println("Ogiltigt val. Försök igen.");
+                System.out.println("Invalid selection. Try again.\n");
             }
         }
 
