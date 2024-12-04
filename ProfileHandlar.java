@@ -3,41 +3,50 @@ import java.util.Scanner;
 
 public class ProfileHandlar {
 
+        //Scanner instance for user input
         Scanner scanner = new Scanner(System.in);
+
+        //List to store profiles
         private final ArrayList<Persons> personList;
 
+        //Constructor to initialize the profile list
         public ProfileHandlar() {
             personList = new ArrayList<>();
 
         }
 
+        //Method for adding person to the list
         public void addPerson(Persons person){
 
             personList.add(person);
         }
 
+        //Create and add a new profile
         public void addProfile(Scanner scanner){
             System.out.println("Enter firstname: ");
-            String firstName = scanner.nextLine();
+            String firstName = scanner.nextLine(); //Read first name
             System.out.print("Enter lastname:");
-            String lastName = scanner.nextLine();
+            String lastName = scanner.nextLine(); //Read last name
             System.out.print("Enter age: ");
-            int age = scanner.nextInt();
-            scanner.nextLine(); // Konsumera ny rad
+            int age = scanner.nextInt(); //Read age
+            scanner.nextLine(); // Consume newline
             System.out.print("Enter address: ");
-            String address = scanner.nextLine();
+            String address = scanner.nextLine(); //Read address
             System.out.print("Enter phone number: ");
-            String phone = scanner.nextLine();
+            String phone = scanner.nextLine(); //Read phone number
 
             personList.add(new Persons(firstName, lastName, age, address, phone));
             System.out.println("Profile added successfully.");
         }
 
+        //Remove profile base on first and last name
        public void removeProfile(Scanner scanner) {
         System.out.print("Enter firstname of the profile you want to remove: ");
-        String firstName = scanner.nextLine();
+        String firstName = scanner.nextLine(); //Read first name
         System.out.print("Enter lastname of the profile you want to remove: ");
-        String lastName = scanner.nextLine();
+        String lastName = scanner.nextLine(); //Read last name
+
+           //Use removeIF to find and remove matching profiles
         boolean removed = personList.removeIf(person ->
                 person.getFirstName().equalsIgnoreCase(firstName) &&
                         person.getLastName().equalsIgnoreCase(lastName));
@@ -48,25 +57,30 @@ public class ProfileHandlar {
             }
         }
 
+        //Method for updating profile details
         public void updateProfile(Scanner scanner) {
             System.out.print("Enter the firstname of the profile you want to update: ");
-            String firstName = scanner.nextLine();
+            String firstName = scanner.nextLine(); //Read first name
             System.out.print("Enter lastname of the profile you want to update: ");
-            String lastName = scanner.nextLine();
+            String lastName = scanner.nextLine(); //Read last name
+
+            //Check list to find matching profile
             for (Persons person : personList) {
                 if (person.getFirstName().equalsIgnoreCase(firstName)) {
                     System.out.print("Enter new address: ");
-                    String newAddress = scanner.nextLine();
+                    String newAddress = scanner.nextLine(); //Read new address
                     System.out.print("Enter new phone number: ");
-                    String newPhone = scanner.nextLine();
-                    person.setAddress(newAddress);
-                    person.setPhone(newPhone);
+                    String newPhone = scanner.nextLine(); //Read new phone number
+                    person.setAddress(newAddress); //Update address
+                    person.setPhone(newPhone); //Update phone number
                     System.out.println("Profile update.");
-                    return;
+                    return; //Exit method after updating profile
                 }
             }
             System.out.println("Cant find a profile with this name.");
         }
+
+        //Display all profiles
         public void showAllProfiles(){
             if(personList.isEmpty()) {
                 System.out.println("No profiles.");
@@ -76,7 +90,7 @@ public class ProfileHandlar {
                     System.out.println(Person);
                 }
             }
-            scanner.close();
+            scanner.close(); //Close scanner to release resources
         }
 
     }
