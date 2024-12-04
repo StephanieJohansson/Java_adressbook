@@ -8,7 +8,7 @@ public class Persons {
     private String phone;
 
     // constructor to creat a person with all the specified properties
-    public Persons(String firstName, String lastName, int age, String address, int i, String phone) {
+    public Persons(String firstName, String lastName, int age, String address, int i , String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -16,7 +16,10 @@ public class Persons {
         this.phone = phone;
     }
 
-     // retrieve first name
+    public Persons(String firstName, String lastName, int age, String address, String phone) {
+    }
+
+    // retrieve first name
     public String getFirstName() {
         return firstName;
     }
