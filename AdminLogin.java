@@ -27,15 +27,22 @@ public class AdminLogin {
         if (username.equals(ADMIN_USERNAME) && password.equals(ADMIN_PASSWORD)) {
             System.out.println("Login successful");
 
-            // Admin menu
-            while (true) {
+
+            // Admin menu loop
+            int adminChoice;
+            do {
                 System.out.println("Welcome " + ADMIN_USERNAME);
                 System.out.println("1. Add a new profile");
                 System.out.println("2. Delete a profile");
                 System.out.println("3. Update a profile");
                 System.out.println("4. Sign out");
 
-                int adminChoice = scanner.nextInt();
+                // Check if user input is valid
+                while (!scanner.hasNextInt()) {
+                    System.out.println("Invalid input. Try again");
+                    scanner.next();
+                }
+                adminChoice = scanner.nextInt();
                 scanner.nextLine();
 
                 switch (adminChoice) {
@@ -57,13 +64,11 @@ public class AdminLogin {
                     default:
                         System.out.println("Invalid choice, try again.");
                 }
-            }
+            } while (adminChoice < 1 || adminChoice > 4); // Repeat until valid choice
         } else {
             System.out.println("Invalid username or password.");
-            return false;
+            return false; // Return to main menu if credentials are incorrect
         }
-
-        // scanner.close();
-
+        return false;
     }
 }
