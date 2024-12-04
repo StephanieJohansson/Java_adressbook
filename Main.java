@@ -5,10 +5,12 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // creating a scanner to read the input from the user via the console
         Scanner scanner = new Scanner(System.in);
         PersonManager personManager = new PersonManager();
 
-
+        // adding persons in personManager with addPerson method
+        // creating persons with the constructor from the Persons-class which receives first- and lastname, age, address, number
         personManager.addPerson(new Persons("Anna", "Svensson", 28, "Storgatan", 10, "070-123 45 67"));
         personManager.addPerson(new Persons("Erik", "Johansson", 34, "Storgatan", 15, "070-234 56 78"));
         personManager.addPerson(new Persons("Sara", "Andersson", 22, "Långgatan", 5, "070-345 67 89"));
@@ -30,6 +32,7 @@ public class Main {
         personManager.addPerson(new Persons("Sara", "Olsson", 21, "Kortgatan", 10, "070-901 23 45"));
         personManager.addPerson(new Persons("Erik", "Persson", 39, "Långgatan", 8, "070-012 34 56"));
 
+        // loops through every person added to the personManager and returns the list
         for (Persons person : personManager.getPersons()) {
 
         }
