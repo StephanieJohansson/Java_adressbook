@@ -2,16 +2,20 @@ import java.util.ArrayList;
 
 public class PersonManager{
 
+    // instance variable arraylist to store value of the Person-object
     private ArrayList<Persons> personList;
 
+    // constructor to create an arraylist to use in main as the preset list of profiles
     public PersonManager(){
         personList = new ArrayList<>();
     }
 
+    // method that put the profiles in my arraylist
     public void addPerson(Persons person){
         personList.add(person);
     }
 
+    // method to return the whole list of profiles
     public ArrayList<Persons> getPersons() {
         return personList;
     }
