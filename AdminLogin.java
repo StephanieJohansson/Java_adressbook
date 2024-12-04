@@ -9,8 +9,8 @@ public class AdminLogin {
     private final ProfileHandlar profileHandlar;
 
     // Constructor
-    public AdminLogin() {
-        this.profileHandlar = new ProfileHandlar();
+    public AdminLogin(PersonManager personManager) {
+        this.profileHandlar = new ProfileHandlar(personManager);
     }
 
 

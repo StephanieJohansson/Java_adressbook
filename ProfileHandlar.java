@@ -2,7 +2,32 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProfileHandlar {
+    // Instance of PersonManager
+    private final PersonManager personManager;
 
+    // Constructor to initialize ProfileHandlar with a PersonManager
+    public ProfileHandlar(PersonManager personManager) {
+        this.personManager = personManager;
+    }
+
+    // Create and add a new profile
+    public void addProfile(Scanner scanner) {
+        System.out.println("Enter firstname: ");
+        String firstName = scanner.nextLine(); // Read first name
+        System.out.print("Enter lastname: ");
+        String lastName = scanner.nextLine(); // Read last name
+        System.out.print("Enter age: ");
+        int age = scanner.nextInt(); // Read age
+        scanner.nextLine(); // Consume newline
+        System.out.print("Enter address: ");
+        String address = scanner.nextLine(); // Read address
+        System.out.print("Enter phone number: ");
+        String phone = scanner.nextLine(); // Read phone number
+
+        // Now use personManager to add the profile
+        personManager.addPerson(new Persons(firstName, lastName, age, address, phone));
+        System.out.println("Profile added successfully.");
+    /*
         //Scanner instance for user input
         Scanner scanner = new Scanner(System.in);
 
@@ -36,7 +61,7 @@ public class ProfileHandlar {
             String phone = scanner.nextLine(); //Read phone number
 
             personList.add(new Persons(firstName, lastName, age, address, phone));
-            System.out.println("Profile added successfully.");
+            System.out.println("Profile added successfully.");*/
         }
 
         //Remove profile base on first and last name
@@ -47,7 +72,7 @@ public class ProfileHandlar {
         String lastName = scanner.nextLine(); //Read last name
 
            //Use removeIF to find and remove matching profiles
-        boolean removed = personList.removeIf(person ->
+        boolean removed = personManager.getPersons().removeIf(person ->
                 person.getFirstName().equalsIgnoreCase(firstName) &&
                         person.getLastName().equalsIgnoreCase(lastName));
         if (removed) {
@@ -65,7 +90,7 @@ public class ProfileHandlar {
             String lastName = scanner.nextLine(); //Read last name
 
             //Check list to find matching profile
-            for (Persons person : personList) {
+            for (Persons person : personManager.getPersons()) {
                 if (person.getFirstName().equalsIgnoreCase(firstName)) {
                     System.out.print("Enter new address: ");
                     String newAddress = scanner.nextLine(); //Read new address
@@ -82,15 +107,17 @@ public class ProfileHandlar {
 
         //Display all profiles
         public void showAllProfiles(){
-            if(personList.isEmpty()) {
+            if(personManager.getPersons().isEmpty()) {
                 System.out.println("No profiles.");
             } else {
                 System.out.println("Profiles:");
-                for (Persons Person : personList){
-                    System.out.println(Person);
+                for (Persons person : personManager.getPersons()){
+                    System.out.println(person);
                 }
             }
-            scanner.close(); //Close scanner to release resources
+
+
+            /*scanner.close(); //Close scanner to release resources*/
         }
 
     }

@@ -75,7 +75,7 @@ public class Main {
                     }
                 }
             } else if (choice == 3) { // If user chooses 3 to log in as admin
-                AdminLogin adminLogin = new AdminLogin(); // Create an instance of AdminLogin
+                AdminLogin adminLogin = new AdminLogin(personManager); // Create an instance of AdminLogin
                 boolean loggedOut = adminLogin.login(); // Call the login method
 
                 if (loggedOut) {
