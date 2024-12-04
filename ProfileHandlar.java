@@ -29,8 +29,8 @@ public class ProfileHandlar {
             System.out.print("Enter phone number: ");
             String phone = scanner.nextLine();
 
-            /*personList.add(new Persons(firstName, lastName, age, address, phone));
-            System.out.println("Profile added successfully.");*/
+            personList.add(new Persons(firstName, lastName, age, address, phone));
+            System.out.println("Profile added successfully.");
         }
 
        public void removeProfile(Scanner scanner) {
