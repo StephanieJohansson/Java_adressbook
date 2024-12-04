@@ -41,15 +41,15 @@ public class AdminLogin {
                 switch (adminChoice) {
                     case 1:
                         System.out.println("Add a new profile");
-
+                        profileHandlar.addProfile(scanner); // Call addProfile method
                         break;
                     case 2:
                         System.out.println("Delete a profile");
-
+                        profileHandlar.removeProfile(scanner); // Call removeProfile method
                         break;
                     case 3:
                         System.out.println("Update a profile");
-
+                        profileHandlar.updateProfile(scanner); // Call updateProfile method
                         break;
                     case 4:
                         System.out.println("Signing out...");
