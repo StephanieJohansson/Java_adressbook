@@ -40,8 +40,9 @@ public class Main {
             //Menu display options
             System.out.println("\nVälj ett alternativ:");
             System.out.println("1. Sök");
-            System.out.println("2. Logga in som admin");
-            System.out.println("3. Avsluta");
+            System.out.println("2. Visa lista");
+            System.out.println("3. Logga in som admin");
+            System.out.println("4. Avsluta");
             System.out.print("Ditt val: ");
             int choice = scanner.nextInt(); //Read users choice between 1-2
             scanner.nextLine(); // Clear the input
@@ -60,7 +61,17 @@ public class Main {
                         System.out.println("--------------------");
                     }
                 }
-            } else if (choice == 2) { // If user chooses 2 to log in as admin
+            } else if (choice == 2) { // new code to show the list
+                ArrayList<Persons> persons = personManager.getPersons();
+                if (persons.isEmpty()) {
+                    System.out.println("Inga kontakter finns i listan.");
+                } else {
+                    System.out.println("Lista över kontakter:");
+                    for (Persons person : persons) {
+                        System.out.println(person);
+                    }
+                }
+            } else if (choice == 3) { // If user chooses 3 to log in as admin
                 AdminLogin adminLogin = new AdminLogin(); // Create an instance of AdminLogin
                 boolean loggedOut = adminLogin.login(); // Call the login method
 
@@ -68,7 +79,7 @@ public class Main {
                     System.out.println("Du har loggats ut och återanvänder till huvudmenyn.");
                 }
 
-            } else if (choice == 3) { //If user chooses 3 for exiting
+            } else if (choice == 4) { //If user chooses 4 for exiting
                 System.out.println("Avslutar...");
                 break; //Exit loop
             } else { //Handle invalid input
