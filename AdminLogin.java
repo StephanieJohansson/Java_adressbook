@@ -18,7 +18,6 @@ public class AdminLogin {
 
     // Admin login process
     public boolean login() {
-
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nSIGN IN");
         System.out.print("Enter your username: ");
@@ -28,8 +27,7 @@ public class AdminLogin {
 
         // Check if input matches admin credentials
         if (username.equals(ADMIN_USERNAME) && password.equals(ADMIN_PASSWORD)) {
-
-            signIn();
+            logInSuccessful();
 
             // Admin menu loop
             boolean loggedIn = true;
@@ -38,9 +36,8 @@ public class AdminLogin {
             do {
                 adminMenu();
 
-                // Check if user input is an integer
                 while (!scanner.hasNextInt()) {
-                    System.out.println("Invalid input. Try again:");
+                    System.out.print("Invalid input, try again: ");
                     scanner.next();
                 }
                 adminChoice = scanner.nextInt();
@@ -60,50 +57,59 @@ public class AdminLogin {
                         profileHandlar.updateProfile(scanner); // Call updateProfile method
                         break;
                     case 4: // Search list
-                        System.out.println("Search");
-                        System.out.print("Who do you wanna find?: ");
-                        String query = scanner.nextLine(); //Read search input
-                        ArrayList<Persons> results = personManager.search(query); //Perform search
-
-                        if (results.isEmpty()) { //If no match is found
-                            System.out.println("No results found.");
-                        } else { //Else display matching persons
-                            System.out.println("\nFound profiles:");
-                            for (Persons person : results) {
-                                System.out.println(person); //Print contact details
-                                System.out.println("--------------------");
-                            }
-                        }
+                        searchProfile(scanner);
                         break;
                     case 5: // View the list
-                        ArrayList<Persons> persons = personManager.getPersons();
-                        if (persons.isEmpty()) {
-                            System.out.println("There are no profiles in this list.");
-                        } else {
-                            System.out.println("\n-----------------------------------------------");
-                            System.out.println("List of profiles:");
-                            for (Persons person : persons) {
-                                System.out.println(person);
-                            }
-                            System.out.println("-----------------------------------------------");
-                        }
+                        showProfiles();
                         break;
                     case 6:
                         System.out.println("\nSigning out...");
                         loggedIn = false; // exit the admin menu and return to main class
                         break;
                     default:
-                        System.out.println("Invalid choice, try again.");
+                        System.out.print("Invalid choice, try again: ");
                 }
             } while (loggedIn);
             return true; // (adminChoice < 1 || adminChoice > 6); // Repeat until valid choice 1-6
-        } else {
-            System.out.println("Invalid username or password. Returning to main menu...");
-            return false; // Return to main menu if credentials are incorrect
+    } else {
+        System.out.println("Invalid username or password. Returning to main menu...");
+        return false; // Return to main menu if credentials are incorrect
+    }
+
+}
+
+    private void searchProfile(Scanner scanner) {
+        System.out.println("Search");
+        System.out.print("Who do you wanna find?: ");
+        String query = scanner.nextLine(); //Read search input
+        ArrayList<Persons> results = personManager.search(query); //Perform search
+
+        if (results.isEmpty()) { //If no match is found
+            System.out.println("No results found.");
+        } else { //Else display matching persons
+            System.out.println("\nFound profiles:");
+            for (Persons person : results) {
+                System.out.println(person); //Print contact details
+                System.out.println("--------------------");
+            }
         }
     }
 
-    private void signIn() {
+    private void showProfiles() {
+        ArrayList<Persons> persons = personManager.getPersons();
+        if (persons.isEmpty()) {
+            System.out.println("There are no profiles in this list.");
+        } else {
+            System.out.println("\n-----------------------------------------------");
+            System.out.println("List of profiles:");
+            for (Persons person : persons) {
+                System.out.println(person);
+            }
+            System.out.println("-----------------------------------------------");
+        }
+    }
+
+    private void logInSuccessful() {
         System.out.println("\n--------------------------");
         System.out.println("Login successful!");
         System.out.println("You're signed in as admin.");
@@ -120,4 +126,5 @@ public class AdminLogin {
         System.out.println("6. Sign out");
         System.out.print("Please enter your choice: ");
     }
+
 }

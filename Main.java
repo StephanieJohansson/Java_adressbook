@@ -79,7 +79,7 @@ public class Main {
                 boolean loggedOut = adminLogin.login(); // Call the login method
 
                 if (loggedOut) {
-                    System.out.println("You have been logged out and are returning to the main menu.");
+                    System.out.println("You are being redirected to the main menu.");
                 }
 
             } else if (choice == 4) { //If user chooses 4 for exiting
