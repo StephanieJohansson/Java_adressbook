@@ -44,7 +44,7 @@ public class Main {
             System.out.println("You're signed in as guest.");
             System.out.println("1. Search");
             System.out.println("2. Show list");
-            System.out.println("3. Log in as admin");
+            System.out.println("3. Sign in as admin");
             System.out.println("4. Exit");
             System.out.print("Your choice: ");
             int choice = scanner.nextInt(); //Read users choice between 1-2
@@ -67,7 +67,7 @@ public class Main {
             } else if (choice == 2) { // new code to show the list
                 ArrayList<Persons> persons = personManager.getPersons();
                 if (persons.isEmpty()) {
-                    System.out.println("There is no profiles in this list.");
+                    System.out.println("There are no profiles in this list.");
                 } else {
                     System.out.println("List of profiles:");
                     for (Persons person : persons) {

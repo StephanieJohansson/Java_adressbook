@@ -20,34 +20,27 @@ public class AdminLogin {
     public boolean login() {
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Login as administrator");
-        System.out.println("Enter your username: ");
+        System.out.println("\nSIGN IN");
+        System.out.print("Enter your username: ");
         String username = scanner.nextLine();
-        System.out.println("Enter your password: ");
+        System.out.print("Enter your password: ");
         String password = scanner.nextLine();
 
         // Check if input matches admin credentials
         if (username.equals(ADMIN_USERNAME) && password.equals(ADMIN_PASSWORD)) {
-            System.out.println("Login successful");
-            System.out.println("You're signed in as admin.");
+
+            signIn();
 
             // Admin menu loop
             boolean loggedIn = true;
             int adminChoice;
 
             do {
-                System.out.println("What do you want to do?");
-                System.out.println("1. Add a new profile");
-                System.out.println("2. Delete a profile");
-                System.out.println("3. Update a profile");
-                System.out.println("4. Search a profile");
-                System.out.println("5. Show list");
-                System.out.println("6. Sign out");
-                System.out.println("Please enter your choice: ");
+                adminMenu();
 
                 // Check if user input is an integer
                 while (!scanner.hasNextInt()) {
-                    System.out.println("Invalid input. Try again");
+                    System.out.println("Invalid input. Try again:");
                     scanner.next();
                 }
                 adminChoice = scanner.nextInt();
@@ -75,7 +68,7 @@ public class AdminLogin {
                         if (results.isEmpty()) { //If no match is found
                             System.out.println("No results found.");
                         } else { //Else display matching persons
-                            System.out.println("Found profiles:");
+                            System.out.println("\nFound profiles:");
                             for (Persons person : results) {
                                 System.out.println(person); //Print contact details
                                 System.out.println("--------------------");
@@ -85,16 +78,18 @@ public class AdminLogin {
                     case 5: // View the list
                         ArrayList<Persons> persons = personManager.getPersons();
                         if (persons.isEmpty()) {
-                            System.out.println("There is no profiles in this list.");
+                            System.out.println("There are no profiles in this list.");
                         } else {
+                            System.out.println("\n-----------------------------------------------");
                             System.out.println("List of profiles:");
                             for (Persons person : persons) {
                                 System.out.println(person);
                             }
+                            System.out.println("-----------------------------------------------");
                         }
                         break;
                     case 6:
-                        System.out.println("Signing out...");
+                        System.out.println("\nSigning out...");
                         loggedIn = false; // exit the admin menu and return to main class
                         break;
                     default:
@@ -106,5 +101,23 @@ public class AdminLogin {
             System.out.println("Invalid username or password. Returning to main menu...");
             return false; // Return to main menu if credentials are incorrect
         }
+    }
+
+    private void signIn() {
+        System.out.println("\n--------------------------");
+        System.out.println("Login successful!");
+        System.out.println("You're signed in as admin.");
+        System.out.println("--------------------------");
+    }
+
+    private void adminMenu() {
+        System.out.println("\nADMIN MENU");
+        System.out.println("1. Add a new profile");
+        System.out.println("2. Delete a profile");
+        System.out.println("3. Update a profile");
+        System.out.println("4. Search a profile");
+        System.out.println("5. Show list");
+        System.out.println("6. Sign out");
+        System.out.print("Please enter your choice: ");
     }
 }
