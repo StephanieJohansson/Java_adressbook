@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AdminLogin {
@@ -13,8 +14,12 @@ public class AdminLogin {
         this.profileHandlar = new ProfileHandlar(personManager);
     }
 
+    PersonManager personManager = new PersonManager();
+
+
     // Admin login process
     public boolean login() {
+
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Login as administrator");
@@ -29,13 +34,17 @@ public class AdminLogin {
             System.out.println("You're signed in as admin.");
 
             // Admin menu loop
+            boolean loggedIn = true;
             int adminChoice;
+
             do {
                 System.out.println("What do you want to do?");
                 System.out.println("1. Add a new profile");
                 System.out.println("2. Delete a profile");
                 System.out.println("3. Update a profile");
-                System.out.println("4. Sign out");
+                System.out.println("4. Search a profile");
+                System.out.println("5. Show list");
+                System.out.println("6. Sign out");
                 System.out.println("Please enter your choice: ");
 
                 // Check if user input is an integer
@@ -59,17 +68,22 @@ public class AdminLogin {
                         System.out.println("Update a profile");
                         profileHandlar.updateProfile(scanner); // Call updateProfile method
                         break;
-                    case 4:
+                    case 4: // Search list
+
+                    case 5: // View the list
+
+                    case 6:
                         System.out.println("Signing out...");
-                        return true; // exit the admin menu and return to main class
+                        loggedIn = false; // exit the admin menu and return to main class
+                        break;
                     default:
                         System.out.println("Invalid choice, try again.");
                 }
-            } while (adminChoice < 1 || adminChoice > 4); // Repeat until valid choice 1-4
+            } while (loggedIn);
+            return true; // (adminChoice < 1 || adminChoice > 6); // Repeat until valid choice 1-6
         } else {
             System.out.println("Invalid username or password. Returning to main menu...");
             return false; // Return to main menu if credentials are incorrect
         }
-        return false;
     }
 }
