@@ -8,18 +8,16 @@ public class AdminLogin {
     private static final String ADMIN_PASSWORD = "admin";
     // Instance of ProfileHandlar
     private final ProfileHandlar profileHandlar;
+    private final PersonManager personManager;
 
     // Constructor
     public AdminLogin(PersonManager personManager) {
+        this.personManager = personManager;
         this.profileHandlar = new ProfileHandlar(personManager);
     }
 
-    PersonManager personManager = new PersonManager();
-
-
     // Admin login process
     public boolean login() {
-
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Login as administrator");
@@ -69,9 +67,32 @@ public class AdminLogin {
                         profileHandlar.updateProfile(scanner); // Call updateProfile method
                         break;
                     case 4: // Search list
+                        System.out.println("Search");
+                        System.out.print("Who do you wanna find?: ");
+                        String query = scanner.nextLine(); //Read search input
+                        ArrayList<Persons> results = personManager.search(query); //Perform search
 
+                        if (results.isEmpty()) { //If no match is found
+                            System.out.println("No results found.");
+                        } else { //Else display matching persons
+                            System.out.println("Found profiles:");
+                            for (Persons person : results) {
+                                System.out.println(person); //Print contact details
+                                System.out.println("--------------------");
+                            }
+                        }
+                        break;
                     case 5: // View the list
-
+                        ArrayList<Persons> persons = personManager.getPersons();
+                        if (persons.isEmpty()) {
+                            System.out.println("There is no profiles in this list.");
+                        } else {
+                            System.out.println("List of profiles:");
+                            for (Persons person : persons) {
+                                System.out.println(person);
+                            }
+                        }
+                        break;
                     case 6:
                         System.out.println("Signing out...");
                         loggedIn = false; // exit the admin menu and return to main class
